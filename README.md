@@ -9,6 +9,7 @@ Plan, prepare & perform
 
     //====  Get & display 5 most recent tweets ====//
         ==> https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object
+        ==> https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline.html
         Using tweet object:
          "user": {
              "name": "TwitterDev",
