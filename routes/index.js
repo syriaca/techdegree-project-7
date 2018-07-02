@@ -9,14 +9,18 @@ const userTweets = [];
 const userFriends = [];
 
 // get friend
-T.get('friends/list', {count: 5}, function(err, data, response)  {
-  const friendsArray = [];
-  friendsArray.push(data);
-  friendsArray.forEach(function(test) {
-    const friendsObject = {};
-    friendsObject.
-  });
-})
+T.get('friends/list', {count: 1}, function(err, data, response)  {
+  const friends = JSON.parse(data);
+  // for(var i = 0; i <  friends.length; i++) {
+  //   console.log(i);
+  //   const friendsObject = {};
+  //   friendsObject.name = friend.name;
+  //   friendsObject.screen_name = friend.screen_name; 
+  //   friendsObject.avatar = friend.profile_image_url;
+  //   friendsObject.following = friend.following;
+  //   console.log(friendsObject); 
+  // }
+});
 
 // get user information
 T.get('account/verify_credentials', function(err, data, response)  {
