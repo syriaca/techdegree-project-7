@@ -12,8 +12,8 @@ const userDirectMessages = [];
 T.get('account/verify_credentials', function(err, data, response)  {
   userInfo = {
     screen_name: data.screen_name,
-    profile_image: data.profile_image_url
-  }
+    avatar: data.profile_image_url
+  }  
 })
 
 // get 5 latest tweet
@@ -48,7 +48,7 @@ T.get('direct_messages/events/list', {count: 1},
     const directMessagesObject = {};
     
     // TODO: iterate on object properties and push them to an array
-    
+
     userDirectMessages.push(directMessagesObject);
 });
 
