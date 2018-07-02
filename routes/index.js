@@ -42,6 +42,7 @@ T.get('friends/list', {count: 5}, function(err, data, response)  {
     friendsObject.avatar = friend.profile_image_url;
     friendsObject.following = friend.following;
     userFriends.push(friendsObject);
+    console.log(userFriends)
   });
 });
 
