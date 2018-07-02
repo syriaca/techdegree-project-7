@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const config = require('../config');
 const Twit = require('twit');
+const bodyParser = require('body-parser');
 const T = new Twit(config);
 let userInfo = {};
 const userTweets = [];
@@ -9,7 +10,12 @@ const userFriends = [];
 
 // get friend
 T.get('friends/list', {count: 5}, function(err, data, response)  {
-  data.forEach(function(tweet) {});
+  const friendsArray = [];
+  friendsArray.push(data);
+  friendsArray.forEach(function(test) {
+    const friendsObject = {};
+    friendsObject.
+  });
 })
 
 // get user information
