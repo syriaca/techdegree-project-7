@@ -2,25 +2,11 @@ var express = require('express');
 var router = express.Router();
 const config = require('../config');
 const Twit = require('twit');
-const bodyParser = require('body-parser');
 const T = new Twit(config);
 let userInfo = {};
 const userTweets = [];
 const userFriends = [];
-
-// get friend
-T.get('friends/list', {count: 1}, function(err, data, response)  {
-  const friends = JSON.parse(data);
-  // for(var i = 0; i <  friends.length; i++) {
-  //   console.log(i);
-  //   const friendsObject = {};
-  //   friendsObject.name = friend.name;
-  //   friendsObject.screen_name = friend.screen_name; 
-  //   friendsObject.avatar = friend.profile_image_url;
-  //   friendsObject.following = friend.following;
-  //   console.log(friendsObject); 
-  // }
-});
+const userDirectMessages = [];
 
 // get user information
 T.get('account/verify_credentials', function(err, data, response)  {
@@ -43,10 +29,33 @@ T.get('statuses/user_timeline', {count: 5},
   });
 });
 
+// get 5 latest friends information
+T.get('friends/list', {count: 5}, function(err, data, response)  {
+  data.users.forEach(function(friend) {    
+    const friendsObject = {};
+    friendsObject.name = friend.name;
+    friendsObject.screen_name = friend.screen_name;
+    friendsObject.avatar = friend.profile_image_url;
+    friendsObject.following = friend.following;
+    userFriends.push(friendsObject);
+  });
+});
+
+
+// Get & display 5 most recent direct messages
+T.get('direct_messages/events/list', {count: 1},
+  function(err, data, response) {
+    const directMessagesObject = {};
+    
+    // TODO: iterate on object properties and push them to an array
+    
+    userDirectMessages.push(directMessagesObject);
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index',
-    { title: 'Twitter Client', userTweets, userInfo }
+    { title: 'Twitter Client', userInfo, userTweets, userFriends, userDirectMessages }
   );
 });
 

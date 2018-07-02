@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const indexRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
-const Twit = require('twit');
-const config = require('./config');
 
 const app = express();
 
