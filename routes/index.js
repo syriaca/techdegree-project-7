@@ -21,11 +21,15 @@ T.get('statuses/user_timeline', {count: 5},
   function(err, data, response) {
     data.forEach(function(tweet) {
       const tweetObject = {};
-      tweetObject.text = tweet.text;
+      tweetObject.name = tweet.user.name;
+      tweetObject.screen_name = tweet.user.screen_name;
       tweetObject.date = tweet.created_at;
+      tweetObject.avatar = tweet.user.profile_image_url;
+      tweetObject.text = tweet.text;
       tweetObject.retweets = tweet.retweet_count;
       tweetObject.likes = tweet.favorite_count;
       userTweets.push(tweetObject);
+      console.log(userTweets);
   });
 });
 
